@@ -1,18 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import { BrowserRouter } from 'react-router-dom';
+import 'react-notifications/lib/notifications.css';
 import { Provider } from 'react-redux';
+import { ConnectedRouter } from 'connected-react-router';
 import App from './App';
-import store from './store/configureStore';
+import store, { history } from './store/configureStore';
 
 
 const app = (
-  <BrowserRouter>
-    <Provider store={store}>
+  <Provider store={store}>
+    <ConnectedRouter history={history}>
       <App />
-    </Provider>
-  </BrowserRouter>
+    </ConnectedRouter>
+  </Provider>
 );
 
 ReactDOM.render(app, document.getElementById('root'));

@@ -3,6 +3,7 @@ import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import StarRate from '@material-ui/icons/StarRounded';
+import Delete from '@material-ui/icons/Delete';
 import Typography from '@material-ui/core/Typography';
 
 const Cards = (props) => {
@@ -33,7 +34,7 @@ const Cards = (props) => {
         }
         return null;
       })}
-      {props.match.path === '/' && props.user && props.user.map(item => (
+      {props.match.path === '/' && props.user && props.user.map((item, index) => (
         <Card key={item.id}>
           <CardContent style={{ display: 'Flex', flexDirection: 'row', alignItems: 'center' }}>
             <Typography color="textSecondary" gutterBottom>
@@ -46,6 +47,7 @@ const Cards = (props) => {
             </CardContent>
             <CardActions>
               <StarRate style={{ color: item.isFavorite ? 'yellow' : 'grey' }} onClick={() => clickHendler(item)} />
+              <Delete style={{ color: 'red' }} onClick={() => props.deleteUser(index)} />
             </CardActions>
           </CardContent>
         </Card>

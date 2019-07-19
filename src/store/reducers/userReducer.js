@@ -1,10 +1,11 @@
 import {
-  FETCH_USER_FAILURE, FETCH_USER_REQUEST, FETCH_USER_SUCCESS, MAKE_USER_FAVORITE,
+  DELETE_USER_CONTACT,
+  FETCH_USER_FAILURE, FETCH_USER_REQUEST, FETCH_USER_SUCCESS, MAKE_USER_FAVORITE, POST_USER_CONTACT,
 } from '../actions/ActionTypes';
 
 const initialState = {
   users: null,
-  failure: null,
+  failure: false,
 };
 
 const userReducer = (state = initialState, action) => {
@@ -28,6 +29,14 @@ const userReducer = (state = initialState, action) => {
         }
       }
       return { ...state, users: [...updatedUsers] };
+    }
+    case POST_USER_CONTACT: {
+      return { ...state, users: [...state.users, action.data] };
+    }
+    case DELETE_USER_CONTACT: {
+      const usersDelete = [...state.users];
+      usersDelete.splice(action.id, 1);
+      return { ...state, users: usersDelete };
     }
     default:
       return state;
