@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { fade, makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -17,6 +17,8 @@ import MoreIcon from '@material-ui/icons/MoreVert';
 import StarRate from '@material-ui/icons/StarRounded';
 import AddBox from '@material-ui/icons/AddBox';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { findUser } from '../../store/actions/UserActions/actions';
 
 const useStyles = makeStyles(theme => ({
   grow: {
@@ -80,7 +82,9 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const Header = () => {
+const Header = (props) => {
+  const [user, changeHendler] = useState('');
+
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
@@ -178,10 +182,10 @@ const Header = () => {
             <Link to="/">Contact.io</Link>
           </Typography>
           <div className={classes.search}>
-            <div className={classes.searchIcon}>
-              <SearchIcon />
-            </div>
+            <div className={classes.searchIcon} />
             <InputBase
+              value={user}
+              onChange={e => changeHendler(e.target.value)}
               placeholder="Search…"
               classes={{
                 root: classes.inputRoot,
@@ -190,6 +194,7 @@ const Header = () => {
               inputProps={{ 'aria-label': 'Search' }}
             />
           </div>
+          <SearchIcon style={{ cursor: 'pointer' }} onClick={() => props.findUsers(user)} />
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
             <Link to="/favorite">
@@ -239,4 +244,8 @@ const Header = () => {
   );
 };
 
-export default Header;
+const mapDispatchToProps = dispatch => ({
+  findUsers: data => dispatch(findUser(data)),
+});
+
+export default connect(null, mapDispatchToProps)(Header);

@@ -10,9 +10,10 @@ const Cards = (props) => {
   const clickHendler = ({ id }) => {
     props.makeUserFavorite(id);
   };
+
   return (
     <>
-      {props.match.path === '/favorite' && props.user && props.user.map((item) => {
+      {props.match.path === '/favorite' && props.user && props.user.map((item, index) => {
         if (item.isFavorite === true) {
           return (
             <Card key={item.id}>

@@ -8,6 +8,7 @@ import { createLogger } from 'redux-logger';
 
 import { loadFromLocalStorage, saveToLocalStorage } from './localStorage';
 import userReducer from './reducers/userReducer';
+import findReducer from './reducers/findReducer';
 
 const logger = createLogger({ collapsed: (getState, action, logEntry) => !logEntry.error });
 
@@ -16,6 +17,7 @@ export const history = createBrowserHistory();
 const rootReducer = combineReducers({
   router: connectRouter(history),
   users: userReducer,
+  findUser: findReducer,
 
 });
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

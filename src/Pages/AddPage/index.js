@@ -8,7 +8,7 @@ import { postUserContact } from '../../store/actions/UserActions/actions';
 
 const AddPage = (props) => {
   const [user, changeUser] = useState({
-    id: Math.floor(Math.random() * (999 - 60) - 60),
+    id: Date.now().toString(),
     name: '',
     phone: '',
   });

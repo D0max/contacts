@@ -16,7 +16,12 @@ const userReducer = (state = initialState, action) => {
       if (state.users) {
         return { ...state };
       }
-      return { ...state, users: action.payload };
+      const newUser = action.payload.sort((a, b) => {
+        if(a.name < b.name) { return -1; }
+        if(a.name > b.name) { return 1; }
+        return 0;
+      })
+      return { ...state, users: newUser };
     }
     case FETCH_USER_FAILURE:
       return { ...state, failure: action.failure };
@@ -31,7 +36,13 @@ const userReducer = (state = initialState, action) => {
       return { ...state, users: [...updatedUsers] };
     }
     case POST_USER_CONTACT: {
-      return { ...state, users: [...state.users, action.data] };
+      let users = [...state.users, action.data];
+      users = users.sort((a, b) => {
+        if(a.name < b.name) { return -1; }
+        if(a.name > b.name) { return 1; }
+        return 0;
+      })
+      return { ...state, users };
     }
     case DELETE_USER_CONTACT: {
       const usersDelete = [...state.users];

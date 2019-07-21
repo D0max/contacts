@@ -5,7 +5,7 @@ import {
   DELETE_USER_CONTACT,
   FETCH_USER_FAILURE,
   FETCH_USER_REQUEST,
-  FETCH_USER_SUCCESS,
+  FETCH_USER_SUCCESS, FIND_USER,
   MAKE_USER_FAVORITE, POST_USER_CONTACT,
 } from '../ActionTypes';
 
@@ -20,6 +20,9 @@ export const fetchUserFailure = failure => (
 );
 export const makeUserFavorite = id => (
   { type: MAKE_USER_FAVORITE, id }
+);
+export const findUser = data => (
+  { type: FIND_USER, data }
 );
 
 
