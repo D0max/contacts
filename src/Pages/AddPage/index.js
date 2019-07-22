@@ -19,7 +19,7 @@ const AddPage = (props) => {
   return (
     <>
       <Container>
-        <div className="add">
+        <div className="addPage">
           <div className="add-form">
             <Form
               title="Имя"

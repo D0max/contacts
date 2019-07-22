@@ -7,14 +7,14 @@ const Form = ({
   title, type, value, name, onChange,
 }) => (
   <>
-    <FormControl>
-      <label>
-        <span>
+    <FormControl className="formControl">
+      <label className='labelForm'>
+        <span className="spanForm">
           { title }
 :
           {' '}
         </span>
-        <Input type={type} value={value} name={name} onChange={onChange} />
+        <Input className="formInput" type={type} value={value} name={name} onChange={onChange} />
       </label>
     </FormControl>
   </>
